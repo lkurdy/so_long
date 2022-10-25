@@ -1,11 +1,10 @@
-NAME = pac_man
+NAME = so_long
 
-SRC =  test.c
-#main.c get_next_line.c get_next_line_utils.c
+SRC =  src/mymap.c src/utils.c src/main.c src/get_next_line.c src/get_next_line_utils.c src/ft_printf.c src/ft_hex.c src/ft_putbase.c src/ft_utils.c src/element.c
 
 CC = gcc
 
-FLAGS	= -Wall -Wextra -Werror -I/usr/include -Imlx_linux -O3 -c
+FLAGS	= -Wall -Wextra -Werror -I/usr/include -Imlx_linux -c
 
 MLX	=	-Lmlx_linux -lmlx_Linux -L/usr/lib -Imlx_linux -lXext -lX11 -lm -lz -o
 

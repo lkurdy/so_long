@@ -6,7 +6,7 @@
 /*   By: lkurdy <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/18 18:47:13 by lkurdy            #+#    #+#             */
-/*   Updated: 2022/06/13 15:49:48 by lkurdy           ###   ########.fr       */
+/*   Updated: 2022/06/16 15:17:19 by lkurdy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,20 +92,17 @@ static char	*ft_strdup(char *str)
 static char	*remp(int fd, char *buffer, char *line)
 {
 	int	rd;
-	int	BUFFER_SIZE;
+	int	size;
 
-	BUFFER_SIZE = 4;
+	size = 4;
 	rd = 1;
 	if (!line)
 		line = calloc(1, 1);
 	while (rd > 0)
 	{
-		rd = read(fd, buffer, BUFFER_SIZE);
+		rd = read(fd, buffer, size);
 		if (rd < 0)
-		{
-			free(line);
-			return (free(buffer), NULL);
-		}
+			return (free(line), free(buffer), NULL);
 		if (rd == 0 && !ft_strlen(line))
 		{
 			free(line);
@@ -125,12 +122,12 @@ char	*get_next_line(int fd)
 	char		*buffer;
 	static char	*line;
 	char		*dest;
-	int		BUFFER_SIZE;
+	int			size;
 
-	BUFFER_SIZE = 4;
-	if (fd < 0 || BUFFER_SIZE <= 0 || read(fd, 0, 0) < 0)
+	size = 4;
+	if (fd < 0 || size <= 0 || read(fd, 0, 0) < 0)
 		return (NULL);
-	buffer = ft_calloc(BUFFER_SIZE + 1, sizeof(char));
+	buffer = ft_calloc(size + 1, sizeof(char));
 	if (!buffer)
 		return (NULL);
 	line = remp(fd, buffer, line);
